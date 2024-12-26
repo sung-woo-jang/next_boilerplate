@@ -1,9 +1,8 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import './globals.css';
-import { AxiosInterceptor } from '@/services/AxiosInterceptor';
-import { ReduxProviders } from '@/provider/ReduxProvider';
 import ReactQueryProvider from '@/provider/ReactQueryProvider';
+import AxiosInterceptor from '@/api/AxiosInterceptor';
 
 const geistSans = localFont({
   src: './fonts/GeistVF.woff',
@@ -28,15 +27,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko-kr">
-      <ReduxProviders>
-        <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        >
-          <ReactQueryProvider>
-            <AxiosInterceptor>{children}</AxiosInterceptor>
-          </ReactQueryProvider>
-        </body>
-      </ReduxProviders>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
+        <ReactQueryProvider>
+          <AxiosInterceptor>{children}</AxiosInterceptor>
+        </ReactQueryProvider>
+      </body>
     </html>
   );
 }
